@@ -5,8 +5,9 @@ import React, { useState, useEffect } from 'react';
 import TaskItem, { Task } from './TaskItem';
 import AddTaskForm from './AddTaskForm';
 import { useAuth } from '@/context/AuthContext'; // Import useAuth
+import { API_URL } from '../utils/api';
 
-const API_URL = "http://127.0.0.1:8000/api";
+const BASE_API_URL = API_URL + '/api';
 
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -35,7 +36,7 @@ const TaskList: React.FC = () => {
       return;
     }
     try {
-      const response = await authorizedFetch(`${API_URL}/tasks`);
+      const response = await authorizedFetch(`${BASE_API_URL}/tasks`);
       if (!response.ok) {
         throw new Error('Failed to fetch tasks from the server.');
       }
@@ -55,7 +56,7 @@ const TaskList: React.FC = () => {
   const handleAddTask = async (title: string, description?: string) => {
     if (!token) return;
     try {
-      const response = await authorizedFetch(`${API_URL}/tasks`, {
+      const response = await authorizedFetch(`${BASE_API_URL}/tasks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, completed: false }),
@@ -73,8 +74,7 @@ const TaskList: React.FC = () => {
   const handleUpdateTask = async (id: number, updates: { completed?: boolean; title?: string }) => {
     if (!token) return;
     try {
-      const response = await authorizedFetch(`${API_URL}/tasks/${id}`, {
-        method: 'PUT',
+      const response = await authorizedFetch(`${BASE_API_URL}/tasks/${id}`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updates),
       });
@@ -91,7 +91,7 @@ const TaskList: React.FC = () => {
   const handleDeleteTask = async (id: number) => {
     if (!token) return;
     try {
-      const response = await authorizedFetch(`${API_URL}/tasks/${id}`, {
+      const response = await authorizedFetch(`${BASE_API_URL}/tasks/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {

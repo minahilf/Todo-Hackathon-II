@@ -2,8 +2,9 @@
 "use client";
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { API_URL } from '../utils/api';
 
-const API_BASE_URL = "http://127.0.0.1:8000"; // Your backend API base URL
+const API_BASE_URL = API_URL;
 
 interface AuthContextType {
   user: { username: string } | null;
