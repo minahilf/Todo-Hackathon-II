@@ -146,7 +146,7 @@ app = FastAPI(
 
 # CORS (Cross-Origin Resource Sharing)
 origins = [
-    "http://localhost:3000", # Allow frontend to access
+    "*"
 ]
 
 app.add_middleware(
