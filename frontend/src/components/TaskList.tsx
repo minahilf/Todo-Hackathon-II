@@ -75,6 +75,7 @@ const TaskList: React.FC = () => {
     if (!token) return;
     try {
       const response = await authorizedFetch(`${BASE_API_URL}/tasks/${id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updates),
       });
