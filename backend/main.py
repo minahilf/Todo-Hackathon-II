@@ -42,7 +42,11 @@ app = FastAPI(
 )
 
 # CORS Setup
-origins = ["http://localhost:3000"]
+origins = [
+    "http://localhost:3000",
+    "https://todo-hackathon-ii-1qkg.vercel.app", # Aapka Vercel URL
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -50,7 +54,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 app.include_router(chat.router, prefix="/api")
 
 # --- AUTH ENDPOINTS ---
