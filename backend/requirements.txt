@@ -3,6 +3,6 @@ uvicorn[standard]
 sqlmodel
 psycopg2-binary
 python-dotenv
-bcrypt
+bcrypt==4.0.1
 python-jose[cryptography]
 python-multipart

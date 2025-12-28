@@ -47,14 +47,14 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onUpdate, onDelete }) => {
           : 'bg-white/5 backdrop-blur-md border-white/10'
         }
     `}>
-      <div className="flex items-center flex-grow">
+      <div className="flex items-center grow">
         <input
           type="checkbox"
           checked={task.completed}
           onChange={(e) => onUpdate(task.id, { completed: e.target.checked })}
           className="h-6 w-6 rounded-full border-gray-300 text-blue-500 focus:ring-blue-400 transition bg-transparent"
         />
-        <div className="ml-4 flex-grow">
+        <div className="ml-4 grow">
           {isEditing ? (
             <input
               type="text"
