@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:8000';
+export const API_URL = 'https://minahil-todo-backend.onrender.com';
 
 export async function authorizedFetch(url: string, options?: RequestInit): Promise<Response> {
   const mergedHeaders: Record<string, string> = {
