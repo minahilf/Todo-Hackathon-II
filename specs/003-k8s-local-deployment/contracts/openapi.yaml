@@ -1,0 +1,7 @@
+# This feature introduces no changes to the existing API contracts.
+# This file is a placeholder to conform to the project structure.
+openapi: 3.0.0
+info:
+  title: "No Change"
+  version: "1.0.0"
+paths: {}
