@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python:3.11-slim-buster AS base
+FROM python:3.13-slim AS base
 
 # Prevent Python from writing .pyc files to disc
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -18,7 +18,7 @@ FROM base AS builder
 WORKDIR /app
 
 # Install pip dependencies
-COPY --chown=appuser:appuser requirements.txt .
+COPY --chown=appuser:appuser backend/requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
@@ -28,6 +28,7 @@ WORKDIR /app
 
 # Copy application code
 COPY --from=builder --chown=appuser:appuser /app /app
+COPY --chown=appuser:appuser backend/main.py backend/src/ ./ 
 
 # Expose the port FastAPI listens on
 EXPOSE 8000
