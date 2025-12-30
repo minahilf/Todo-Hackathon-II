@@ -18,7 +18,7 @@ FROM base AS builder
 WORKDIR /app
 
 # Install pip dependencies
-COPY --chown=appuser:appuser backend/requirements.txt .
+COPY --chown=appuser:appuser requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
@@ -28,7 +28,8 @@ WORKDIR /app
 
 # Copy application code
 COPY --from=builder --chown=appuser:appuser /app /app
-COPY --chown=appuser:appuser backend/main.py backend/src/ ./ 
+COPY --chown=appuser:appuser main.py ./
+COPY --chown=appuser:appuser src/ ./src/
 
 # Expose the port FastAPI listens on
 EXPOSE 8000
